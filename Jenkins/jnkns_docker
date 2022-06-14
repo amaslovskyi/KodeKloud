@@ -1,0 +1,14 @@
+pipeline {
+    agent {
+        docker { iamge 'golang:latest' }
+    }
+
+    stages {
+        stage('Development') {
+            steps {
+                git ''
+                sh 'go version'
+            }
+        }
+    }
+}
