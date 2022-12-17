@@ -1,0 +1,5 @@
+filename= "/root/pets.txt"
+content= "We love Pets!"
+prefix= "Mrs"
+separator= "."
+lenght= "2"

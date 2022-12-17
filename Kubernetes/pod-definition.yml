@@ -2,10 +2,23 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: myapp-pod
+  # namespace: dev - create a pod in the dev namespace
   labels:
     app: myapp
-    typr: front-end
+    type: front-end
 spec:
   containers:
     - name: nginx-container
       image: nginx
+      # args: ["10"] # set args inside the docker
+      # command:
+      #   - "sleep"
+      #   - "5000"
+      env: # set an environment
+        # - name: APP_COLOR
+        #   value: pink
+        - name: name
+          # envFrom:
+          valueFrom: # value from config map
+            configMapKeyRef:
+              key: some_key

@@ -2,22 +2,23 @@ apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
   name: myapp
-  labels:
-    app: myapp
+  labels: # labels replicaset itself
+    app: myapp-replicaset
     type: front-end
 spec:
   replicas: 3
-  template:
+  template: # pods configure section
     metadata:
       name: myapp-pod
-      labels:
+      labels: # labels configure on the pods
         app: myapp
         type: front-end
     spec:
       containers:
-      - name: nginx-container
-        image: nginx
+        - name: nginx-container
+          image: nginx
 
-  selector:
+  selector: #identify what pods fall under it, can also manage the pods whith same label
+    # that not created as part of rs creation
     matchLabels:
       type: front-end

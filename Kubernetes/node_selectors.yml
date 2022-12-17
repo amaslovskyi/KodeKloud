@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "MYAPP"
+  namespace: default
+  labels:
+    app: "MYAPP"
+spec:
+  containers:
+    - name: MYAPP
+      image: "debian-slim:latest"
+
+  nodeSelector:
+    size: Large

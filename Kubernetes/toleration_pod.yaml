@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx
+
+  tolerations: # set parameters toleration for node
+    - key: "app"
+      operator: "Equal" # Equal means '='
+      value: "blue"
+      effect: "NoSchedule"

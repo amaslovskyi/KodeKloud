@@ -4,8 +4,12 @@ metadata:
   name: "nginx"
   labels:
     app: "nginx"
-    tire: frontend
+    type: frontend
 spec:
   containers:
-  - name: nginx
-    image: "nginx"
+    - name: nginx
+      image: "nginx"
+      command: # If the pod goes into the crashloopbackoff
+        # then add the command sleep 1000
+        - sleep
+        - "3600"
