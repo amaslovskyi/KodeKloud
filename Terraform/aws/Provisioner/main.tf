@@ -14,14 +14,15 @@ resource "aws_instance" "webserver" {
     #  inline = ["echo $(hostname -i) >> /tmp/ips.txt"]
     #}
   }
+  connection {
+    type        = "ssh"
+    host        = self.public
+    user        = "ubuntu"
+    private_key = file("/root/.ssh.web")
+  }
+  # key_name = aws_key_pair.web.id
+  # vpc_security_group_ids = [ aws_security_group.ssh-access.id ]
 }
-connection {
-  type        = "ssh"
-  host        = self.public
-  user        = "ubuntu"
-  private_key = file("/root/.ssh.web")
-}
-
 resource "aws_security_group" "ssh-access" {
   name        = "ssh-access"
   description = "Allow SSH access from the Internet"

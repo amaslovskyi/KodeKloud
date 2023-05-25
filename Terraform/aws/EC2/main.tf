@@ -1,7 +1,15 @@
 resource "aws_instance" "webserver" {
-  ami                    = "ami-065deacbcaac64cf2"
-  instance_type          = "t2.micro"
-  user_data              = file("start_serv.sh")
+  ami           = "ami-065deacbcaac64cf2"
+  instance_type = "t2.micro"
+  # user_data              = file("start_serv.sh")
+  user_data = <<-EOF
+             #!/bin/bash
+             sudo apt update
+             sudo apt install nginx -y
+             systemctl enable nginx
+             systemctl start nginx
+             EOF
+
   key_name               = "terraform" # aws_key_pair.web.id
   vpc_security_group_ids = [aws_security_group.ssh-access.id]
 
